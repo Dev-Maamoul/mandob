@@ -11,7 +11,6 @@ extension LoginMethod on ApisMaamoul {
           headers: {
             "content-type":
                 "application/json", // Specify content-type as JSON to prevent empty response body
-            'Access-Control-Allow-Origin': '*', // تأكد من السماح بالطلب
           },
         ),
       );
@@ -31,6 +30,7 @@ extension LoginMethod on ApisMaamoul {
 
       throw FormatException(error.message);
     } catch (error) {
+      print(error);
       print("22222");
 
       throw FormatException(error.toString());

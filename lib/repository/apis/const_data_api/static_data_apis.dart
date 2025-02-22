@@ -8,6 +8,7 @@ class StaticDataApis {
   final dio = Dio();
 
   StaticDataApis() {
-    dio.options = BaseOptions(baseUrl: baseUrl,headers: {});
+    dio.options = BaseOptions(baseUrl: baseUrl, headers: {});
   }
 }
+//'https://cors-anywhere.herokuapp.com/https://your-api.com/data'
