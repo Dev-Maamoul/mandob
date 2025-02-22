@@ -8,6 +8,6 @@ class StaticDataApis {
   final dio = Dio();
 
   StaticDataApis() {
-    dio.options = BaseOptions(baseUrl: baseUrl);
+    dio.options = BaseOptions(baseUrl: baseUrl,headers: {});
   }
 }

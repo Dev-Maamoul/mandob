@@ -30,3 +30,6 @@ flutter:
   assets:
     - assets/
     
+flutter_web:
+  uses-material-design: true
+  web-renderer: html

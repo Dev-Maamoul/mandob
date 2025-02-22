@@ -21,6 +21,8 @@ class AuthCubit extends Cubit<AuthState> {
         throw FormatException("The phone not correct");
       }
       final loginData = await _getIt.apis.loginMethod(mobile: mobile);
+      print("---2---");
+      print(loginData);
       await _getIt.saveLoginData(loginData: loginData);
 
       emit(SuccessLoginState());
