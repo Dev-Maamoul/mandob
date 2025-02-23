@@ -9,6 +9,9 @@ final class LoadingState extends HomeState {}
 
 final class SuccessState extends HomeState {}
 
+
+final class SuccessUploadState extends HomeState {}
+
 final class ErrorState extends HomeState {
   final String text;
   ErrorState({required this.text});

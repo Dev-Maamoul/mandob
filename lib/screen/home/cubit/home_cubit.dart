@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:company_project/layer_data/InitClass.dart';
+import 'package:company_project/layer_data/driver_data.dart';
 import 'package:company_project/layer_data/profile_data.dart';
 import 'package:company_project/repository/apis/methods/a_method_apis.dart';
 import 'package:get_it/get_it.dart';
@@ -9,6 +12,7 @@ part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   final _getIt = GetIt.I.get<ProfileData>();
+  final _getItDriver = GetIt.I.get<DriversData>();
 
   HomeCubit() : super(HomeInitial());
 
@@ -39,4 +43,6 @@ class HomeCubit extends Cubit<HomeState> {
       emit(ErrorState(text: error.toString()));
     }
   }
+
+  
 }

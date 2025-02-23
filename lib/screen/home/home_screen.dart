@@ -1,7 +1,7 @@
 import 'package:company_project/layer_data/InitClass.dart';
 import 'package:company_project/layer_data/profile_data.dart';
 import 'package:company_project/screen/checkScreen/check_screen.dart';
-import 'package:company_project/screen/drivers_screen.dart';
+import 'package:company_project/screen/drivers/drivers_screen.dart';
 import 'package:company_project/screen/home/cubit/home_cubit.dart';
 import 'package:company_project/screen/login/login_screen.dart';
 import 'package:company_project/utils/color_style.dart';
@@ -155,12 +155,6 @@ class HomeScreen extends StatelessWidget {
                             spacing: 25,
                             runSpacing: 20,
                             children: [
-                              CardButton(
-                                title: "Upload driver file",
-                                onTap: () async {
-                                  await uploadXlsxFile();
-                                },
-                              ),
                               CardButton(
                                 title: "Drivers",
                                 onTap: () async {

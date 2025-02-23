@@ -1,5 +1,5 @@
-
 import 'package:company_project/screen/checkScreen/check_screen.dart';
+import 'package:company_project/screen/test.dart';
 import 'package:company_project/services/setup.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +14,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: CheckScreen());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+
+      home: CheckScreen(),
+      // home: SaveFile(),
+    );
   }
 }

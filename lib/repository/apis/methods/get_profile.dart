@@ -3,7 +3,6 @@ part of 'a_method_apis.dart';
 extension GetProfileMethod on ApisMaamoul {
   Future<ProfileModel> getProfileMethod({required String token}) async {
     try {
-      print("here is api ***");
       final response = await _static.dio.get(
         _endpoint.getProfile,
         options: Options(
@@ -14,7 +13,6 @@ extension GetProfileMethod on ApisMaamoul {
           },
         ),
       );
-      print(response.data['data']);
       if (response.statusCode.toString().startsWith('20')) {
         return ProfileModel.fromJson(response.data['data']);
       } else {

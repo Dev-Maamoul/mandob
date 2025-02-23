@@ -1,25 +1,28 @@
-import 'dart:io';
-
 import 'package:file_picker/file_picker.dart';
 
-Future<void> uploadXlsxFile() async {
+Future<List<int>> uploadXlsxFile() async {
   try {
-    // Pick an xlsx file
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
+      allowMultiple: false,
+      allowCompression: true,
+
+      dialogTitle: "The",
       allowedExtensions: ['xlsx'],
     );
 
     if (result != null) {
-      File file = File(result.files.single.path!);
+      // الحصول على بيانات الملف
+      PlatformFile file = result.files.first;
 
-      // Create a form data object
+      // تحويل الملف إلى List<int>
+      List<int> fileBytes = file.bytes!.toList();
 
-      // Upload file
+      return fileBytes;
     } else {
-      print("No file selected.");
+      throw Exception('حدث خطأ: في رفع الملف');
     }
   } catch (e) {
-    print("Error uploading file: $e");
+    throw Exception('حدث خطأ: $e');
   }
 }
