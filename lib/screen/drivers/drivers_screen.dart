@@ -1,4 +1,6 @@
+import 'package:company_project/screen/driver_view/drivers_view_screen.dart';
 import 'package:company_project/screen/drivers/cubit/drivers_cubit.dart';
+import 'package:company_project/screen/login/login_screen.dart';
 import 'package:company_project/screen/widgets/images/images_account.dart.dart';
 import 'package:company_project/utils/color_style.dart';
 import 'package:company_project/utils/methods/upload_xlsx_file.dart';
@@ -10,8 +12,6 @@ class DriversScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<NavigatorState> _dialogKey = GlobalKey<NavigatorState>();
-
     return BlocProvider(
       create: (context) => DriversCubit(),
       child: Builder(
@@ -87,13 +87,17 @@ class DriversScreen extends StatelessWidget {
                             shrinkWrap: true,
                             itemCount: cubit.getIt.drivers?.length,
                             itemBuilder: (context, index) {
-                              print(index);
                               return Container(
-                                // color: Colors.white,
                                 margin: EdgeInsets.symmetric(vertical: 8),
                                 child: Center(
                                   child: Container(
-                                    color: Colors.white,
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      border: Border.all(
+                                        color: ColorStyle.primary,
+                                      ),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
                                     padding: EdgeInsets.all(8),
                                     child: Column(
                                       crossAxisAlignment:
@@ -203,7 +207,24 @@ class DriversScreen extends StatelessWidget {
                                                       "${cubit.getIt.drivers![index].profits} RS",
                                                 ),
                                                 ElevatedButton(
-                                                  onPressed: () {},
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                        backgroundColor:
+                                                            ColorStyle.primary,
+                                                        foregroundColor:
+                                                            Colors.white,
+                                                      ),
+                                                  onPressed: () {
+                                                    context.pushScreen(
+                                                      canPop: true,
+                                                      screen: DriversViewScreen(
+                                                        driver:
+                                                            cubit
+                                                                .getIt
+                                                                .drivers![index],
+                                                      ),
+                                                    );
+                                                  },
                                                   child: Text("View"),
                                                 ),
                                               ],
@@ -401,7 +422,7 @@ class LabelTitleDriverWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
-            flex: (flex! ~/ 2),
+            flex: (flex! ~/ 3),
             child: Text(
               "$title:",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),

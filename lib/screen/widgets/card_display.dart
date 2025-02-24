@@ -7,15 +7,17 @@ class CardDisplay extends StatelessWidget {
     required this.title,
     required this.titleValue,
     required this.subTitle,
+    this.size = 200,
   });
   final String title;
   final num titleValue;
   final String subTitle;
+  final double? size;
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 65,
-      width: 200,
+      width: size,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(8),

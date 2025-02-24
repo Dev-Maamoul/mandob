@@ -27,7 +27,19 @@ class ImageAccount extends StatelessWidget {
         scale: 1,
         imageUrl: defaultImage,
         placeholder: (context, url) => CircularProgressIndicator(),
-        errorWidget: (context, url, error) => Icon(Icons.error),
+        errorWidget:
+            (context, url, error) => Container(
+              height: size,
+              width: size,
+              alignment: Alignment.center,
+              color: Colors.red.withAlpha(25),
+              child: Image.asset(
+                'assets/logo.png',
+                width: size! / 2,
+                height: size! / 2,
+                fit: BoxFit.fitHeight,
+              ),
+            ),
       ),
     );
   }

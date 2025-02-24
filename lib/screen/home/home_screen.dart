@@ -5,7 +5,6 @@ import 'package:company_project/screen/drivers/drivers_screen.dart';
 import 'package:company_project/screen/home/cubit/home_cubit.dart';
 import 'package:company_project/screen/login/login_screen.dart';
 import 'package:company_project/utils/color_style.dart';
-import 'package:company_project/utils/methods/upload_xlsx_file.dart';
 import 'package:company_project/screen/widgets/buttons/Card_button.dart';
 import 'package:company_project/screen/widgets/cardInfo_company.dart';
 import 'package:company_project/screen/widgets/card_display.dart';
@@ -49,14 +48,14 @@ class HomeScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Name Company",
+                                  getIt?.companyName ?? '----',
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 Text(
-                                  "#5594r6",
+                                  getIt!.id,
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.normal,
@@ -64,7 +63,17 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
+
                             Spacer(),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: IconButton(
+                                onPressed: () {
+                                  cubit.refresh();
+                                },
+                                icon: Icon(Icons.refresh),
+                              ),
+                            ),
                             IconButton(
                               onPressed: () {
                                 displaySettings(context: context);
@@ -75,8 +84,12 @@ class HomeScreen extends StatelessWidget {
                         ),
                         SizedBox(height: 16),
                         Container(
-                          color: Colors.white,
                           width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: ColorStyle.primary),
+                          ),
                           padding: EdgeInsets.symmetric(
                             horizontal: 16,
                             vertical: 16,
@@ -96,19 +109,19 @@ class HomeScreen extends StatelessWidget {
                                 children: [
                                   CardInfoCompany(
                                     title: 'Phone',
-                                    value: '0555555599',
+                                    value: getIt.mobile ?? "----",
                                   ),
                                   CardInfoCompany(
                                     title: 'Email',
-                                    value: 'Company@gamil.com',
+                                    value: getIt.email ?? "----",
                                   ),
                                   CardInfoCompany(
                                     title: 'Commercial Register',
-                                    value: '1234566',
+                                    value: getIt.commercialId ?? "----",
                                   ),
                                   CardInfoCompany(
                                     title: 'Establishment Number',
-                                    value: '07102024',
+                                    value: getIt.establishmentId ?? "----",
                                   ),
                                 ],
                               ),
@@ -116,15 +129,6 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 36),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: IconButton(
-                            onPressed: () {
-                              cubit.refresh();
-                            },
-                            icon: Icon(Icons.refresh),
-                          ),
-                        ),
 
                         Center(
                           child: Wrap(
