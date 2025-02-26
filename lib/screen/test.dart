@@ -69,11 +69,18 @@ class PhoneWidgetDriver extends StatelessWidget {
         border: Border.all(color: ColorStyle.primary, width: 2),
       ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          ImageAccount(url: driver.imageUrl, size: 80),
           Expanded(
+            flex: 2,
+            child: Center(child: ImageAccount(url: driver.imageUrl, size: 80)),
+          ),
+          Expanded(
+            flex: 3,
+
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+
               children: [
                 Text(
                   driver.fullName!,
@@ -83,45 +90,32 @@ class PhoneWidgetDriver extends StatelessWidget {
                   "#${driver.id}",
                   style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 4),
-                Wrap(
-                  children: [
-                    Expanded(
-                      child: LabelCustomWithTitle(
-                        title: 'Mobile',
-                        value: driver.mobile!,
-                      ),
-                    ),
-                    Expanded(
-                      child: LabelCustomWithTitle(
-                        title: 'Nationality',
-                        value: driver.nationality!,
-                      ),
-                    ),
-                    Expanded(
-                      child: LabelCustomWithTitle(
-                        title: 'Completed',
-                        value: driver.completed.toString(),
-                      ),
-                    ),
-                  ],
+                LabelCustomWithTitle(title: 'Mobile', value: driver.mobile!),
+                LabelCustomWithTitle(
+                  title: 'Nationality',
+                  value: driver.nationality!,
                 ),
-                Spacer(),
-                Center(
-                  child: TextButton(
-                    onPressed: onPressed,
-                    child: Text(
-                      "View",
-                      style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: ColorStyle.primary,
-                      ),
-                    ),
+                LabelCustomWithTitle(
+                  title: 'Completed',
+                  value: driver.completed.toString(),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            flex: 1,
+            child: Center(
+              child: TextButton(
+                onPressed: onPressed,
+                child: Text(
+                  "View",
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                    color: ColorStyle.primary,
                   ),
                 ),
-                Spacer(),
-              ],
+              ),
             ),
           ),
         ],
