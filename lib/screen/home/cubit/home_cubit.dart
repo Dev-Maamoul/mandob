@@ -34,7 +34,7 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       print("***** start load profile");
       emit(LoadingState());
-      await _getIt.getProfile();
+      await _getIt.loadedProfile(loadOnline: true);
 
       emit(SuccessState());
     } on FormatException catch (error) {
@@ -43,6 +43,4 @@ class HomeCubit extends Cubit<HomeState> {
       emit(ErrorState(text: error.toString()));
     }
   }
-
-  
 }

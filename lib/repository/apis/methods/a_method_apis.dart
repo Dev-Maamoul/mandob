@@ -15,6 +15,8 @@ part './get_profile.dart';
 part './get_profile_analyzes.dart';
 part './load_drivers.dart';
 part './upload_drivers.dart';
+part './update_profile.dart';
+part './update_image_profile.dart';
 
 class ApisMaamoul {
   final StaticDataApis _static = StaticDataApis();

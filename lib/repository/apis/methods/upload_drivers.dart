@@ -6,18 +6,14 @@ extension UploadDriversMethod on ApisMaamoul {
     required List<int> fileData,
   }) async {
     try {
-      final Map<String, dynamic> requestData = {
-        "file": fileData, // إرسال البيانات كما هي بدون MultipartFile
-      };
-      print(requestData);
+      final Map<String, dynamic> requestData = {"file": fileData};
       final response = await _static.dio.put(
         _endpoint.uploadDrivers,
         data: requestData,
         options: Options(
           headers: {
             "authorization": "Bearer $token",
-            "content-type":
-                "application/json", // Specify content-type as JSON to prevent empty response body
+            "content-type": "application/json",
           },
         ),
       );
@@ -26,17 +22,10 @@ extension UploadDriversMethod on ApisMaamoul {
         throw FormatException(response.data['data']);
       }
     } on DioException catch (error) {
-      print("1---${error.message}");
-      print("1---${error.error}");
-      print("1---${error.response?.data}");
       throw FormatException(error.response?.data['message']);
     } on FormatException catch (error) {
-      print("2---$error");
-
       throw FormatException(error.message);
     } catch (error) {
-      print("3---$error");
-
       throw FormatException(error.toString());
     }
   }

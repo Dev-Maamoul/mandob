@@ -2,10 +2,10 @@ import 'package:company_project/layer_data/InitClass.dart';
 import 'package:company_project/layer_data/profile_data.dart';
 import 'package:company_project/screen/checkScreen/check_screen.dart';
 import 'package:company_project/screen/drivers/drivers_screen.dart';
+import 'package:company_project/screen/edit_profile/edit_profile_screen.dart';
 import 'package:company_project/screen/home/cubit/home_cubit.dart';
 import 'package:company_project/screen/login/login_screen.dart';
 import 'package:company_project/utils/color_style.dart';
-import 'package:company_project/screen/widgets/buttons/Card_button.dart';
 import 'package:company_project/screen/widgets/cardInfo_company.dart';
 import 'package:company_project/screen/widgets/card_display.dart';
 import 'package:company_project/screen/widgets/images/images_account.dart.dart';
@@ -239,7 +239,13 @@ class Settings extends StatelessWidget {
 //--
 displaySettings({required BuildContext context}) {
   List<Widget> widget = [
-    Settings(title: "Profile", subTitle: "Edit or View Profile", onTap: () {}),
+    Settings(
+      title: "EditProfile",
+      subTitle: "Edit or View Profile",
+      onTap: () {
+        context.pushScreen(screen: EditProfileScreen());
+      },
+    ),
 
     Settings(
       title: "Logout",

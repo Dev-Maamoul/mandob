@@ -5,4 +5,6 @@ class EndpointApis {
   final String getAnalyzes = '/v1/company/get/analyzes';
   final String loadDrivers = '/v1/company/get/drivers';
   final String uploadDrivers = '/v1/company/upload/driver';
+  final String updateProfile = '/v1/company/update/profile';
+  final String updateImage = '/v1/shared/upload/image';
 }

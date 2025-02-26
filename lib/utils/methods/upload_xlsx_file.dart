@@ -1,6 +1,8 @@
 import 'package:file_picker/file_picker.dart';
 
-Future<List<int>> uploadXlsxFile() async {
+Future<List<int>> uploadXlsxFile({
+  required List<String> allowedExtensions,
+}) async {
   try {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
@@ -8,7 +10,7 @@ Future<List<int>> uploadXlsxFile() async {
       allowCompression: true,
 
       dialogTitle: "The",
-      allowedExtensions: ['xlsx'],
+      allowedExtensions: allowedExtensions,
     );
 
     if (result != null) {
