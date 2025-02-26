@@ -138,38 +138,30 @@ class HomeScreen extends StatelessWidget {
                               CardDisplay(
                                 title: "Orders",
                                 subTitle: "Total Orders",
-                                titleValue: getIt?.analyzes?.orders ?? 0,
+                                titleValue: getIt.analyzes?.orders ?? 0,
                               ),
                               CardDisplay(
                                 title: "Drivers",
                                 subTitle: "Total Drivers",
-                                titleValue: getIt?.analyzes?.drivers ?? 0,
+                                titleValue: getIt.analyzes?.drivers ?? 0,
                               ),
                               CardDisplay(
                                 title: "RS",
                                 subTitle: "Total profit",
-                                titleValue: getIt?.analyzes?.profit ?? 0,
+                                titleValue: getIt.analyzes?.profit ?? 0,
                               ),
                             ],
                           ),
                         ),
                         SizedBox(height: 25),
-                        Center(
-                          child: Wrap(
-                            spacing: 25,
-                            runSpacing: 20,
-                            children: [
-                              CardButton(
-                                title: "Drivers",
-                                onTap: () async {
-                                  context.pushScreen(
-                                    screen: DriversScreen(),
-                                    canPop: true,
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
+                        CustomButtonAction(
+                          title: 'Drivers',
+                          onTap: () async {
+                            context.pushScreen(
+                              screen: DriversScreen(),
+                              canPop: true,
+                            );
+                          },
                         ),
                       ],
                     ),

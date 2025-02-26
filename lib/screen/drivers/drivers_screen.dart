@@ -43,203 +43,222 @@ class DriversScreen extends StatelessWidget {
                 child: Stack(
                   children: [
                     Positioned(top: 0, child: BackButtonCustom()),
-                    Positioned(
-                      top: 0,
-                      right: 0,
-                      child: IconButton(
-                        onPressed: () async {
-                          final fileUpload = await uploadXlsxFile();
-                          await cubit.uploadFile(fileData: fileUpload);
-                        },
-                        icon: Row(
-                          children: [
-                            Icon(
-                              Icons.upload_file_outlined,
-                              size: 35,
-                              color: ColorStyle.primary,
-                            ),
-                            Text(
-                              "Upload New driver from \ngoogle sheet",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Container(
-                      height: MediaQuery.sizeOf(context).height,
-                      width: MediaQuery.sizeOf(context).width,
-                      padding: EdgeInsets.only(top: 50),
-                      child: BlocBuilder<DriversCubit, DriversState>(
-                        builder: (context, state) {
-                          if (state is LoadingState) {
-                            return Center(
-                              child: CircularProgressIndicator(
-                                color: ColorStyle.primary,
-                              ),
-                            );
-                          }
-                          return ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: cubit.getIt.drivers?.length,
-                            itemBuilder: (context, index) {
-                              return Container(
-                                margin: EdgeInsets.symmetric(vertical: 8),
-                                child: Center(
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                        color: ColorStyle.primary,
-                                      ),
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    padding: EdgeInsets.all(8),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
+
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        return Container(
+                          height: MediaQuery.sizeOf(context).height,
+                          width: MediaQuery.sizeOf(context).width,
+                          padding: EdgeInsets.only(top: 50),
+                          child: BlocBuilder<DriversCubit, DriversState>(
+                            builder: (context, state) {
+                              if (state is LoadingState) {
+                                return Center(
+                                  child: CircularProgressIndicator(
+                                    color: ColorStyle.primary,
+                                  ),
+                                );
+                              }
+                              return SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    Wrap(
+                                      alignment:
+                                          constraints.maxWidth > 600
+                                              ? WrapAlignment.center
+                                              : WrapAlignment.start,
+                                      runSpacing: 10,
+                                      spacing: 10,
                                       children: [
-                                        LabelTitleDriverWidget(
-                                          sizeCard: 200,
-                                          flex: 2,
-                                          title: "ID",
-                                          text: cubit.getIt.drivers![index].id,
-                                        ),
-                                        ImageAccount(
-                                          url:
-                                              cubit
-                                                  .getIt
-                                                  .drivers![index]
-                                                  .imageUrl,
-                                        ),
-                                        LayoutBuilder(
-                                          builder: (context, constraints) {
-                                            final width = constraints.maxWidth;
-
-                                            double sizeCard = 0;
-                                            switch (width) {
-                                              case >= 900:
-                                                sizeCard = width / 10;
-                                                break;
-                                              case >= 700 && <= 900:
-                                                sizeCard = width;
-                                                break;
-                                              case >= 500 && <= 700:
-                                                sizeCard = width;
-                                                break;
-                                              case <= 500:
-                                                sizeCard = width;
-                                                break;
-                                              default:
-                                            }
-
-                                            return Wrap(
-                                              crossAxisAlignment:
-                                                  WrapCrossAlignment.center,
-                                              alignment: WrapAlignment.center,
-                                              spacing: 20,
-                                              children: [
-                                                LabelTitleDriverWidget(
-                                                  sizeCard: sizeCard,
-                                                  title: "Nationality",
-                                                  text:
-                                                      cubit
-                                                          .getIt
-                                                          .drivers![index]
-                                                          .nationality,
-                                                ),
-                                                LabelTitleDriverWidget(
-                                                  sizeCard: sizeCard,
-                                                  title: "Name",
-                                                  text:
-                                                      cubit
-                                                          .getIt
-                                                          .drivers![index]
-                                                          .fullName,
-                                                ),
-                                                LabelTitleDriverWidget(
-                                                  sizeCard: sizeCard,
-                                                  title: "Mobile",
-                                                  text:
-                                                      cubit
-                                                          .getIt
-                                                          .drivers![index]
-                                                          .mobile,
-                                                ),
-                                                LabelTitleDriverWidget(
-                                                  sizeCard: sizeCard,
-                                                  title: "Email",
-                                                  text:
-                                                      cubit
-                                                          .getIt
-                                                          .drivers![index]
-                                                          .email,
-                                                ),
-                                                LabelTitleDriverWidget(
-                                                  sizeCard: sizeCard,
-                                                  title: "Car",
-                                                  text:
-                                                      cubit
-                                                          .getIt
-                                                          .drivers![index]
-                                                          .carNumber,
-                                                ),
-                                                LabelTitleDriverWidget(
-                                                  sizeCard: sizeCard,
-                                                  title: "Orders",
-                                                  text:
-                                                      cubit
-                                                          .getIt
-                                                          .drivers![index]
-                                                          .countOrders
-                                                          .toString(),
-                                                ),
-                                                LabelTitleDriverWidget(
-                                                  sizeCard: sizeCard,
-                                                  title: "Profits",
-                                                  text:
-                                                      "${cubit.getIt.drivers![index].profits} RS",
-                                                ),
-                                                ElevatedButton(
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                        backgroundColor:
-                                                            ColorStyle.primary,
-                                                        foregroundColor:
-                                                            Colors.white,
-                                                      ),
-                                                  onPressed: () {
-                                                    context.pushScreen(
-                                                      canPop: true,
-                                                      screen: DriversViewScreen(
-                                                        driver:
-                                                            cubit
-                                                                .getIt
-                                                                .drivers![index],
-                                                      ),
-                                                    );
-                                                  },
-                                                  child: Text("View"),
-                                                ),
-                                              ],
+                                        CustomButtonAction(
+                                          title: 'Upload New driver sheet',
+                                          onTap: () async {
+                                            final fileUpload =
+                                                await uploadXlsxFile();
+                                            await cubit.uploadFile(
+                                              fileData: fileUpload,
                                             );
                                           },
                                         ),
                                       ],
                                     ),
-                                  ),
+                                    ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: cubit.getIt.drivers?.length,
+                                      itemBuilder: (context, index) {
+                                        return Container(
+                                          margin: EdgeInsets.symmetric(
+                                            vertical: 8,
+                                          ),
+                                          child: Center(
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                border: Border.all(
+                                                  color: ColorStyle.primary,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                              ),
+                                              padding: EdgeInsets.all(8),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  LabelTitleDriverWidget(
+                                                    sizeCard: 200,
+                                                    flex: 2,
+                                                    title: "ID",
+                                                    text:
+                                                        cubit
+                                                            .getIt
+                                                            .drivers![index]
+                                                            .id,
+                                                  ),
+                                                  ImageAccount(
+                                                    url:
+                                                        cubit
+                                                            .getIt
+                                                            .drivers![index]
+                                                            .imageUrl,
+                                                  ),
+                                                  LayoutBuilder(
+                                                    builder: (
+                                                      context,
+                                                      constraints,
+                                                    ) {
+                                                      final width =
+                                                          constraints.maxWidth;
+
+                                                      double sizeCard = 0;
+                                                      switch (width) {
+                                                        case >= 900:
+                                                          sizeCard = width / 10;
+                                                          break;
+                                                        case >= 700 && <= 900:
+                                                          sizeCard = width;
+                                                          break;
+                                                        case >= 500 && <= 700:
+                                                          sizeCard = width;
+                                                          break;
+                                                        case <= 500:
+                                                          sizeCard = width;
+                                                          break;
+                                                        default:
+                                                      }
+
+                                                      return Wrap(
+                                                        crossAxisAlignment:
+                                                            WrapCrossAlignment
+                                                                .center,
+                                                        alignment:
+                                                            WrapAlignment
+                                                                .center,
+                                                        spacing: 20,
+                                                        children: [
+                                                          LabelTitleDriverWidget(
+                                                            sizeCard: sizeCard,
+                                                            title:
+                                                                "Nationality",
+                                                            text:
+                                                                cubit
+                                                                    .getIt
+                                                                    .drivers![index]
+                                                                    .nationality,
+                                                          ),
+                                                          LabelTitleDriverWidget(
+                                                            sizeCard: sizeCard,
+                                                            title: "Name",
+                                                            text:
+                                                                cubit
+                                                                    .getIt
+                                                                    .drivers![index]
+                                                                    .fullName,
+                                                          ),
+                                                          LabelTitleDriverWidget(
+                                                            sizeCard: sizeCard,
+                                                            title: "Mobile",
+                                                            text:
+                                                                cubit
+                                                                    .getIt
+                                                                    .drivers![index]
+                                                                    .mobile,
+                                                          ),
+                                                          LabelTitleDriverWidget(
+                                                            sizeCard: sizeCard,
+                                                            title: "Email",
+                                                            text:
+                                                                cubit
+                                                                    .getIt
+                                                                    .drivers![index]
+                                                                    .email,
+                                                          ),
+                                                          LabelTitleDriverWidget(
+                                                            sizeCard: sizeCard,
+                                                            title: "Car",
+                                                            text:
+                                                                cubit
+                                                                    .getIt
+                                                                    .drivers![index]
+                                                                    .carNumber,
+                                                          ),
+                                                          LabelTitleDriverWidget(
+                                                            sizeCard: sizeCard,
+                                                            title: "Orders",
+                                                            text:
+                                                                cubit
+                                                                    .getIt
+                                                                    .drivers![index]
+                                                                    .countOrders
+                                                                    .toString(),
+                                                          ),
+                                                          LabelTitleDriverWidget(
+                                                            sizeCard: sizeCard,
+                                                            title: "Profits",
+                                                            text:
+                                                                "${cubit.getIt.drivers![index].profits} RS",
+                                                          ),
+                                                          ElevatedButton(
+                                                            style: ElevatedButton.styleFrom(
+                                                              backgroundColor:
+                                                                  ColorStyle
+                                                                      .primary,
+                                                              foregroundColor:
+                                                                  Colors.white,
+                                                            ),
+                                                            onPressed: () {
+                                                              context.pushScreen(
+                                                                canPop: true,
+                                                                screen: DriversViewScreen(
+                                                                  driver:
+                                                                      cubit
+                                                                          .getIt
+                                                                          .drivers![index],
+                                                                ),
+                                                              );
+                                                            },
+                                                            child: Text("View"),
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ],
                                 ),
                               );
                             },
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -548,5 +567,29 @@ void _hideDialog() {
   if (_overlayEntry != null) {
     _overlayEntry!.remove();
     _overlayEntry = null;
+  }
+}
+
+//
+
+class CustomButtonAction extends StatelessWidget {
+  const CustomButtonAction({super.key, required this.title, this.onTap});
+  final String title;
+  final Function()? onTap;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        height: 45,
+        width: 200,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: ColorStyle.primary,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        child: Text(title, style: TextStyle(color: Colors.white)),
+      ),
+    );
   }
 }

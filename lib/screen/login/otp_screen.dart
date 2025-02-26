@@ -45,10 +45,11 @@ class OTPScreen extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     child: BackButtonCustom(),
                   ),
-                  Container(
-                    height: 400,
-                    width: 400,
-                    child: Image.asset('logo.png'),
+                  SizedBox(height: 48),
+                  SizedBox(
+                    height: 200,
+                    width: 200,
+                    child: Image.asset('logo.png', fit: BoxFit.fitHeight),
                   ),
                   SizedBox(height: 48),
                   Text(
