@@ -19,7 +19,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
 
       home: CheckScreen(),
-      // home: EditProfileScreen(),
+      // home: Scaffold(body: Center(child: CardDriverInfo())),
     );
   }
 }

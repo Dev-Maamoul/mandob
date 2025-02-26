@@ -267,36 +267,26 @@ final x = [
 ];
 
 class LabelTitleDriverWidget extends StatelessWidget {
-  const LabelTitleDriverWidget({
-    super.key,
-    required this.title,
-    this.text,
-    this.sizeCard = 80,
-    this.flex = 1,
-  });
+  const LabelTitleDriverWidget({super.key, required this.title, this.text});
   final String title;
   final String? text;
-  final double? sizeCard;
-  final int? flex;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: sizeCard,
-
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
-            flex: (flex! ~/ 3),
+            flex: (1),
             child: Text(
               "$title:",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
             ),
           ),
-          SizedBox(width: 8),
           Expanded(
-            flex: flex!,
+            flex: 3,
             child: Text(
               text.toString(),
               maxLines: 1,

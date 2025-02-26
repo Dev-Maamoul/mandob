@@ -13,32 +13,27 @@ class ImageAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String defaultImage =
-        "https://www.shutterstock.com/image-vector/eagle-logo-fierce-vibrant-soaring-260nw-2494369867.jpg";
-    if (url != null) {
-      defaultImage = url!;
-    }
+    // String defaultImage =
+    //     "https://www.shutterstock.com/image-vector/eagle-logo-fierce-vibrant-soaring-260nw-2494369867.jpg";
+    // if (url != null) {
+    //   defaultImage = url!;
+    // }
     return ClipRRect(
-      borderRadius: BorderRadius.circular(100),
+      borderRadius: BorderRadius.circular(size!),
       clipBehavior: Clip.antiAlias,
       child: CachedNetworkImage(
-        width: size,
-        height: size,
-        scale: 1,
-        imageUrl: defaultImage,
+        width: size!,
+        height: size!,
+        fit: BoxFit.cover,
+        alignment: Alignment.center,
+        imageUrl: url!,
         placeholder: (context, url) => CircularProgressIndicator(),
         errorWidget:
-            (context, url, error) => Container(
-              height: size,
-              width: size,
-              alignment: Alignment.center,
-              color: Colors.red.withAlpha(25),
-              child: Image.asset(
-                'assets/logo.png',
-                width: size! / 2,
-                height: size! / 2,
-                fit: BoxFit.fitHeight,
-              ),
+            (context, url, error) => Image.asset(
+              'assets/logo.png',
+              fit: BoxFit.cover,
+              width: size!,
+              height: size!,
             ),
       ),
     );
