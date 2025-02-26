@@ -72,58 +72,56 @@ class PhoneWidgetDriver extends StatelessWidget {
         children: [
           ImageAccount(url: driver.imageUrl, size: 80),
           Expanded(
-            child: ListTile(
-              title: Text(
-                driver.fullName!,
-                style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-              ),
-              subtitle: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "#${driver.id}",
-                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 4),
-                  Wrap(
-                    children: [
-                      Expanded(
-                        child: LabelCustomWithTitle(
-                          title: 'Mobile',
-                          value: driver.mobile!,
-                        ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  driver.fullName!,
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "#${driver.id}",
+                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 4),
+                Wrap(
+                  children: [
+                    Expanded(
+                      child: LabelCustomWithTitle(
+                        title: 'Mobile',
+                        value: driver.mobile!,
                       ),
-                      Expanded(
-                        child: LabelCustomWithTitle(
-                          title: 'Nationality',
-                          value: driver.nationality!,
-                        ),
+                    ),
+                    Expanded(
+                      child: LabelCustomWithTitle(
+                        title: 'Nationality',
+                        value: driver.nationality!,
                       ),
-                      Expanded(
-                        child: LabelCustomWithTitle(
-                          title: 'Completed',
-                          value: driver.completed.toString(),
-                        ),
+                    ),
+                    Expanded(
+                      child: LabelCustomWithTitle(
+                        title: 'Completed',
+                        value: driver.completed.toString(),
                       ),
-                    ],
-                  ),
-                  Spacer(),
-                  Center(
-                    child: TextButton(
-                      onPressed: onPressed,
-                      child: Text(
-                        "View",
-                        style: TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                          color: ColorStyle.primary,
-                        ),
+                    ),
+                  ],
+                ),
+                Spacer(),
+                Center(
+                  child: TextButton(
+                    onPressed: onPressed,
+                    child: Text(
+                      "View",
+                      style: TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                        color: ColorStyle.primary,
                       ),
                     ),
                   ),
-                  Spacer(),
-                ],
-              ),
+                ),
+                Spacer(),
+              ],
             ),
           ),
         ],
