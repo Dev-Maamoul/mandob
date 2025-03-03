@@ -2,6 +2,10 @@ import 'package:company_project/screen/driver_view/drivers_view_screen.dart';
 import 'package:company_project/screen/drivers/cubit/drivers_cubit.dart';
 import 'package:company_project/screen/login/login_screen.dart';
 import 'package:company_project/screen/test.dart';
+import 'package:company_project/screen/widgets/buttons/action_button_custom.dart';
+import 'package:company_project/screen/widgets/cards/small_card_driver_info.dart';
+import 'package:company_project/screen/widgets/dialogs/loading_dialog.dart';
+import 'package:company_project/screen/widgets/dialogs/success_dialog.dart';
 import 'package:company_project/utils/color_style.dart';
 import 'package:company_project/utils/methods/upload_xlsx_file.dart';
 import 'package:flutter/material.dart';
@@ -66,10 +70,10 @@ class DriversScreen extends StatelessWidget {
                                   runSpacing: 10,
                                   spacing: 10,
                                   children: [
-                                    CustomButtonAction(
+                                    ActionButtonCustom(
                                       title: 'Upload New driver sheet',
                                       onTap: () async {
-                                        final fileUpload = await uploadXlsxFile(
+                                        final fileUpload = await uploadFile(
                                           allowedExtensions: ['xlsx'],
                                         );
                                         await cubit.uploadFile(
@@ -87,7 +91,7 @@ class DriversScreen extends StatelessWidget {
                                   children:
                                       cubit.getIt.drivers!
                                           .map(
-                                            (driver) => PhoneWidgetDriver(
+                                            (driver) => SmallCardDriverInfo(
                                               driver: driver,
                                               onPressed: () {
                                                 context.pushScreen(
@@ -266,167 +270,4 @@ final x = [
   },
 ];
 
-class LabelTitleDriverWidget extends StatelessWidget {
-  const LabelTitleDriverWidget({super.key, required this.title, this.text});
-  final String title;
-  final String? text;
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: (1),
-            child: Text(
-              "$title:",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-            ),
-          ),
-          Expanded(
-            flex: 3,
-            child: Text(
-              text.toString(),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(fontWeight: FontWeight.normal, fontSize: 12),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
-//
-
-class BackButtonCustom extends StatelessWidget {
-  const BackButtonCustom({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        if (Navigator.canPop(context)) {
-          Navigator.pop(context);
-        }
-      },
-      child: Text("<-Back"),
-    );
-  }
-}
-
-//
-
-void showSuccessDialog({
-  required BuildContext context,
-  required bool isDone,
-  String? message,
-}) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
-        ),
-        title: Column(
-          children: [
-            Icon(
-              isDone ? Icons.check_circle : Icons.warning,
-              color: isDone ? Colors.green : Colors.red,
-              size: 50,
-            ),
-            SizedBox(height: 10),
-            Text(
-              isDone ? "Successful" : "Oh there Error",
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-        content: Text(
-          isDone
-              ? "All drivers has been successfully added."
-              : "Sorry, $message",
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 16),
-        ),
-        actions: [
-          Center(
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: isDone ? Colors.green : Colors.red,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop(); // Close dialog
-              },
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                child: Text("OK", style: TextStyle(color: Colors.white)),
-              ),
-            ),
-          ),
-        ],
-      );
-    },
-  );
-}
-
-//----
-OverlayEntry? _overlayEntry;
-
-OverlayEntry _createOverlayEntry() {
-  return OverlayEntry(
-    builder:
-        (context) => Material(
-          child: Center(
-            child: CircularProgressIndicator(color: ColorStyle.primary),
-          ),
-        ),
-  );
-}
-
-/// عرض AlertDialog
-void showDialogLoading({required BuildContext context}) {
-  if (_overlayEntry == null) {
-    _overlayEntry = _createOverlayEntry();
-    Overlay.of(context).insert(_overlayEntry!);
-  }
-}
-
-/// إغلاق AlertDialog
-void hideDialogLoading() {
-  if (_overlayEntry != null) {
-    _overlayEntry!.remove();
-    _overlayEntry = null;
-  }
-}
-
-//
-
-class CustomButtonAction extends StatelessWidget {
-  const CustomButtonAction({super.key, required this.title, this.onTap});
-  final String title;
-  final Function()? onTap;
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        height: 45,
-        width: 200,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: ColorStyle.primary,
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: Text(title, style: TextStyle(color: Colors.white)),
-      ),
-    );
-  }
-}

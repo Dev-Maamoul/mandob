@@ -5,9 +5,11 @@ import 'package:company_project/screen/drivers/drivers_screen.dart';
 import 'package:company_project/screen/edit_profile/edit_profile_screen.dart';
 import 'package:company_project/screen/home/cubit/home_cubit.dart';
 import 'package:company_project/screen/login/login_screen.dart';
+import 'package:company_project/screen/settings/display_settings.dart';
+import 'package:company_project/screen/widgets/buttons/action_button_custom.dart';
 import 'package:company_project/utils/color_style.dart';
-import 'package:company_project/screen/widgets/cardInfo_company.dart';
-import 'package:company_project/screen/widgets/card_display.dart';
+import 'package:company_project/screen/widgets/cards/cardInfo_company.dart';
+import 'package:company_project/screen/widgets/cards/card_display.dart';
 import 'package:company_project/screen/widgets/images/images_account.dart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -154,7 +156,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         SizedBox(height: 25),
-                        CustomButtonAction(
+                        ActionButtonCustom(
                           title: 'Drivers',
                           onTap: () async {
                             context.pushScreen(
@@ -174,121 +176,4 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-}
-
-//---
-
-//--
-
-class Settings extends StatelessWidget {
-  const Settings({
-    super.key,
-    required this.title,
-    required this.subTitle,
-    this.onTap,
-    this.colorBG = Colors.white,
-    this.colorText = Colors.black,
-    this.icon,
-  });
-  final String title;
-  final String subTitle;
-  final Function()? onTap;
-  final Color? colorBG;
-  final Color? colorText;
-  final IconData? icon;
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          height: 60,
-
-          decoration: BoxDecoration(
-            color: colorBG,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: kElevationToShadow[2],
-          ),
-          alignment: Alignment.center,
-          constraints: BoxConstraints(maxHeight: 90),
-          child: ListTile(
-            title: Text(
-              title,
-              style: TextStyle(
-                color: colorText,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            subtitle: Text(
-              subTitle,
-              style: TextStyle(
-                color: colorText,
-                fontSize: 12,
-                fontWeight: FontWeight.normal,
-              ),
-            ),
-            trailing: icon != null ? Icon(Icons.person) : null,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-//--
-displaySettings({required BuildContext context}) {
-  List<Widget> widget = [
-    Settings(
-      title: "EditProfile",
-      subTitle: "Edit or View Profile",
-      onTap: () {
-        context.pushScreen(screen: EditProfileScreen());
-      },
-    ),
-
-    Settings(
-      title: "Logout",
-      subTitle: "For log out your account",
-      colorBG: Colors.red,
-      colorText: Colors.white,
-
-      onTap: () async {
-        final getIt = GetIt.I.get<InitClass>();
-        await getIt.clearData();
-        await getIt.loadData();
-        if (context.mounted) {
-          context.pushScreen(screen: CheckScreen());
-        }
-      },
-    ),
-  ];
-  showDialog(
-    context: context,
-    useSafeArea: true,
-    useRootNavigator: true,
-    builder:
-        (context) => AlertDialog(
-          title: Text('Settings'),
-          content: SizedBox(
-            height: widget.length * 68,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                spacing: 8,
-                children: widget,
-              ),
-            ),
-          ),
-
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(context); // Close dialog
-              },
-              child: Text('Close'),
-            ),
-          ],
-        ),
-  );
 }

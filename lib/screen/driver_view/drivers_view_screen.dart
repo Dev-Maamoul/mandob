@@ -1,7 +1,8 @@
 import 'package:company_project/models/driver_model.dart';
 import 'package:company_project/screen/drivers/drivers_screen.dart';
 import 'package:company_project/screen/test.dart';
-import 'package:company_project/screen/widgets/card_display.dart';
+import 'package:company_project/screen/widgets/cards/card_display.dart';
+import 'package:company_project/screen/widgets/cards/card_driver_info.dart';
 import 'package:company_project/screen/widgets/images/images_account.dart.dart';
 import 'package:company_project/utils/color_style.dart';
 import 'package:flutter/material.dart';

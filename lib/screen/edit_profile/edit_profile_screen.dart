@@ -5,6 +5,8 @@ import 'package:company_project/screen/drivers/drivers_screen.dart';
 import 'package:company_project/screen/edit_profile/cubit/edit_profile_cubit.dart';
 import 'package:company_project/screen/home/home_screen.dart';
 import 'package:company_project/screen/login/login_screen.dart';
+import 'package:company_project/screen/widgets/dialogs/loading_dialog.dart';
+import 'package:company_project/screen/widgets/textfields/text_field_custom.dart';
 import 'package:company_project/utils/methods/upload_xlsx_file.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -69,7 +71,7 @@ class EditProfileScreen extends StatelessWidget {
                               }
                               return InkWell(
                                 onTap: () async {
-                                  final imageLoad = await uploadXlsxFile(
+                                  final imageLoad = await uploadFile(
                                     allowedExtensions: ['png', 'jpg'],
                                   );
                                   image = Uint8List.fromList(imageLoad);
@@ -92,15 +94,15 @@ class EditProfileScreen extends StatelessWidget {
                             },
                           ),
 
-                          TextFelidCustom(
+                          TextFieldCustom(
                             title: "Company name",
                             controller: controllerName,
                           ),
-                          TextFelidCustom(
+                          TextFieldCustom(
                             title: "Commercial ID",
                             controller: controllerCommercialID,
                           ),
-                          TextFelidCustom(
+                          TextFieldCustom(
                             title: "Establishment ID",
                             controller: controllerEstablishmentID,
                           ),
@@ -151,30 +153,6 @@ class EditProfileScreen extends StatelessWidget {
 
 Uint8List? image;
 
-class TextFelidCustom extends StatelessWidget {
-  const TextFelidCustom({super.key, required this.title, this.controller});
-  final String title;
-  final TextEditingController? controller;
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        constraints: BoxConstraints(maxWidth: 400),
-        labelText: title,
-        hintText: "Enter $title",
-      ),
-    );
-  }
-}
 
-loadedImageURL({String? imageURL}) async {
-  if (imageURL == null) {
-    final ByteData data = await rootBundle.load('assets/logo.png');
-    return data.buffer.asUint8List();
-  }
-  final response = await http.get(Uri.parse(imageURL));
-  final image = response.bodyBytes;
 
-  return image;
-}
+

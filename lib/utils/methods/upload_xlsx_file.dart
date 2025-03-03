@@ -1,6 +1,6 @@
 import 'package:file_picker/file_picker.dart';
 
-Future<List<int>> uploadXlsxFile({
+Future<List<int>> uploadFile({
   required List<String> allowedExtensions,
 }) async {
   try {
