@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:company_project/models/analyzes_model.dart';
 import 'package:company_project/models/auth_model.dart';

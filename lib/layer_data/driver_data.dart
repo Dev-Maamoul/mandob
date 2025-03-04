@@ -1,4 +1,4 @@
-import 'package:company_project/layer_data/InitClass.dart';
+import 'package:company_project/layer_data/init_class.dart';
 import 'package:company_project/models/driver_model.dart';
 import 'package:company_project/repository/apis/methods/a_method_apis.dart';
 import 'package:get_it/get_it.dart';

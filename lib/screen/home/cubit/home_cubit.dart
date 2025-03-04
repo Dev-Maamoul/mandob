@@ -1,10 +1,6 @@
-import 'dart:io';
-
 import 'package:bloc/bloc.dart';
-import 'package:company_project/layer_data/InitClass.dart';
 import 'package:company_project/layer_data/driver_data.dart';
 import 'package:company_project/layer_data/profile_data.dart';
-import 'package:company_project/repository/apis/methods/a_method_apis.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meta/meta.dart';
 
@@ -18,7 +14,6 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> getProfile() async {
     try {
-      print("***** start load profile");
       emit(LoadingState());
       await _getIt.loadedProfile();
 
@@ -32,7 +27,6 @@ class HomeCubit extends Cubit<HomeState> {
 
   Future<void> refresh() async {
     try {
-      print("***** start load profile");
       emit(LoadingState());
       await _getIt.loadedProfile(loadOnline: true);
 

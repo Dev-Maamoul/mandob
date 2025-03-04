@@ -1,7 +1,6 @@
 import 'dart:typed_data';
 
 import 'package:company_project/screen/checkScreen/check_screen.dart';
-import 'package:company_project/screen/drivers/drivers_screen.dart';
 import 'package:company_project/screen/edit_profile/cubit/edit_profile_cubit.dart';
 import 'package:company_project/screen/home/home_screen.dart';
 import 'package:company_project/screen/login/login_screen.dart';
@@ -11,7 +10,6 @@ import 'package:company_project/utils/methods/upload_xlsx_file.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:http/http.dart' as http;
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
@@ -40,7 +38,7 @@ class EditProfileScreen extends StatelessWidget {
             return SingleChildScrollView(
               child: LayoutBuilder(
                 builder: (context, constrained) {
-                  final SizeImage = constrained.maxWidth;
+                  final sizeImage = constrained.maxWidth;
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                       vertical: 32,
@@ -85,8 +83,8 @@ class EditProfileScreen extends StatelessWidget {
                                   child: Image.memory(
                                     cubit.image!,
 
-                                    width: SizeImage / 2,
-                                    height: SizeImage / 2,
+                                    width: sizeImage / 2,
+                                    height: sizeImage / 2,
                                     fit: BoxFit.contain,
                                   ),
                                 ),

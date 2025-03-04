@@ -24,7 +24,6 @@ class InitClass {
   }
 
   Future<void> loadData() async {
-    print("*** -- Start load data Auth -- ***");
     try {
       if (box.hasData('auth')) {
         final authLoaded = jsonDecode(box.read("auth"));
@@ -35,7 +34,6 @@ class InitClass {
         loginData = LoginModel.fromJson(loginLoaded);
       }
     } catch (error) {
-      print(error);
       throw FormatException(error.toString());
     }
   }

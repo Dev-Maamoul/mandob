@@ -3,7 +3,6 @@ part of 'a_method_apis.dart';
 extension GetAnalyzesMethod on ApisMaamoul {
   Future<AnalyzesModel> getAnalyzesMethod({required String token}) async {
     try {
-      print("here is api ***");
       final response = await _static.dio.get(
         _endpoint.getAnalyzes,
         options: Options(

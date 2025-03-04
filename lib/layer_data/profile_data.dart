@@ -1,6 +1,7 @@
 import 'dart:convert';
+import 'dart:developer';
 
-import 'package:company_project/layer_data/InitClass.dart';
+import 'package:company_project/layer_data/init_class.dart';
 import 'package:company_project/models/analyzes_model.dart';
 import 'package:company_project/models/profile_model.dart';
 import 'package:company_project/repository/apis/methods/a_method_apis.dart';
@@ -44,7 +45,7 @@ class ProfileData {
 
       await saveProfile(profile: profileData);
     } catch (error) {
-      print(error);
+      log(error.toString());
     }
   }
 

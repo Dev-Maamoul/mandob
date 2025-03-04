@@ -11,30 +11,23 @@ class DriversCubit extends Cubit<DriversState> {
 
   loadDrivers() async {
     try {
-      print("***** start load drivers");
       emit(LoadingState());
       await getIt.loadData();
-
       emit(SuccessState());
     } catch (error) {
-      print(error);
       throw FormatException("-----d----");
     }
   }
 
   Future<void> uploadFile({required List<int> fileData}) async {
     try {
-      print("***** start load profile");
       emit(LoadingUploadedState());
       await getIt.uploadDriver(fileData: fileData);
 
       emit(SuccessUploadedState());
     } on FormatException catch (error) {
-      print(error);
-
       emit(ErrorUploadedState(text: error.message));
     } catch (error) {
-      print(error);
       emit(ErrorUploadedState(text: error.toString()));
     }
   }

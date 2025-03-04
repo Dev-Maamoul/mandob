@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:company_project/layer_data/InitClass.dart';
+import 'package:company_project/layer_data/init_class.dart';
 import 'package:company_project/repository/apis/methods/a_method_apis.dart';
 import 'package:get_it/get_it.dart';
 import 'package:meta/meta.dart';
@@ -21,8 +21,6 @@ class AuthCubit extends Cubit<AuthState> {
         throw FormatException("The phone not correct");
       }
       final loginData = await _getIt.apis.loginMethod(mobile: mobile);
-      print("---2---");
-      print(loginData);
       await _getIt.saveLoginData(loginData: loginData);
 
       emit(SuccessLoginState());

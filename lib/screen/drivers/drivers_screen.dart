@@ -1,7 +1,6 @@
 import 'package:company_project/screen/driver_view/drivers_view_screen.dart';
 import 'package:company_project/screen/drivers/cubit/drivers_cubit.dart';
 import 'package:company_project/screen/login/login_screen.dart';
-import 'package:company_project/screen/test.dart';
 import 'package:company_project/screen/widgets/buttons/action_button_custom.dart';
 import 'package:company_project/screen/widgets/cards/small_card_driver_info.dart';
 import 'package:company_project/screen/widgets/dialogs/loading_dialog.dart';
