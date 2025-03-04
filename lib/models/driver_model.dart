@@ -1,3 +1,8 @@
+import 'package:company_project/models/company.dart';
+import 'package:company_project/models/static';
+import 'package:company_project/models/static_car_type.dart';
+import 'package:company_project/models/static_cities.dart';
+
 class DriverModel {
   DriverModel({
     required this.id,
@@ -89,100 +94,5 @@ class DriverModel {
   }
 }
 
-class StaticCities {
-  StaticCities({
-    required this.cityAr,
-    required this.cityEn,
-    required this.cityId,
-    required this.regionAr,
-    required this.regionEn,
-  });
-  String? cityAr;
-  String? cityEn;
-  String? cityId;
-  String? regionAr;
-  String? regionEn;
 
-  StaticCities.fromJson(Map<String, dynamic> json) {
-    cityAr = json['city_ar'];
-    cityEn = json['city_en'];
-    cityId = json['city_id'];
-    regionAr = json['region_ar'];
-    regionEn = json['region_en'];
-  }
 
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['city_ar'] = cityAr;
-    data['city_en'] = cityEn;
-    data['city_id'] = cityId;
-    data['region_ar'] = regionAr;
-    data['region_en'] = regionEn;
-    return data;
-  }
-}
-
-class Company {
-  Company({
-    required this.id,
-    required this.email,
-    required this.mobile,
-    required this.logoUrl,
-    required this.companyName,
-  });
-  String? id;
-  String? email;
-  String? mobile;
-  String? logoUrl;
-  String? companyName;
-
-  Company.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    email = json['email'];
-    mobile = json['mobile'];
-    logoUrl = json['logo_url'];
-    companyName = json['company_name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['id'] = id;
-    data['email'] = email;
-    data['mobile'] = mobile;
-    data['logo_url'] = logoUrl;
-    data['company_name'] = companyName;
-    return data;
-  }
-}
-
-class StaticCarType {
-  StaticCarType({required this.reference, required this.ar, required this.en});
-  String? reference;
-  String? ar;
-  String? en;
-
-  StaticCarType.fromJson(Map<String, dynamic> json) {
-    reference = json['reference'];
-    ar = json['ar'];
-    en = json['en'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['reference'] = reference;
-    data['ar'] = ar;
-    data['en'] = en;
-    return data;
-  }
-}
-
-class StaticIdentityType {
-  StaticIdentityType();
-
-  StaticIdentityType.fromJson(Map json);
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    return data;
-  }
-}
