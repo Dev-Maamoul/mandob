@@ -1,9 +1,9 @@
 import 'dart:typed_data';
 
+import 'package:company_project/extenstions/navigator_view.dart';
 import 'package:company_project/screen/checkScreen/check_screen.dart';
 import 'package:company_project/screen/edit_profile/cubit/edit_profile_cubit.dart';
 import 'package:company_project/screen/home/home_screen.dart';
-import 'package:company_project/screen/login/login_screen.dart';
 import 'package:company_project/screen/widgets/dialogs/loading_dialog.dart';
 import 'package:company_project/screen/widgets/textfields/text_field_custom.dart';
 import 'package:company_project/utils/methods/upload_xlsx_file.dart';
@@ -15,6 +15,7 @@ class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
   @override
   Widget build(BuildContext context) {
+    Uint8List? image;
     final TextEditingController controllerName = TextEditingController();
 
     final TextEditingController controllerCommercialID =
@@ -149,7 +150,6 @@ class EditProfileScreen extends StatelessWidget {
   }
 }
 
-Uint8List? image;
 
 
 

@@ -1,7 +1,7 @@
+import 'package:company_project/extenstions/navigator_view.dart';
 import 'package:company_project/layer_data/init_class.dart';
 import 'package:company_project/screen/checkScreen/check_screen.dart';
 import 'package:company_project/screen/edit_profile/edit_profile_screen.dart';
-import 'package:company_project/screen/login/login_screen.dart';
 import 'package:company_project/screen/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';

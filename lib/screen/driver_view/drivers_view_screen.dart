@@ -24,11 +24,3 @@ class DriversViewScreen extends StatelessWidget {
   }
 }
 
-class MenuCustom extends StatelessWidget {
-  const MenuCustom({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MenuCustom();
-  }
-}

@@ -1,11 +1,11 @@
+import 'package:company_project/extenstions/navigator_view.dart';
 import 'package:company_project/layer_data/profile_data.dart';
 import 'package:company_project/screen/drivers/drivers_screen.dart';
 import 'package:company_project/screen/home/cubit/home_cubit.dart';
-import 'package:company_project/screen/login/login_screen.dart';
 import 'package:company_project/screen/settings/display_settings.dart';
 import 'package:company_project/screen/widgets/buttons/action_button_custom.dart';
 import 'package:company_project/utils/color_style.dart';
-import 'package:company_project/screen/widgets/cards/card_info_company.dart';
+import 'package:company_project/screen/widgets/cards/cardInfo_company.dart';
 import 'package:company_project/screen/widgets/cards/card_display.dart';
 import 'package:company_project/screen/widgets/images/images_account.dart.dart';
 import 'package:flutter/material.dart';

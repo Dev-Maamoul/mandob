@@ -1,5 +1,7 @@
+import 'package:company_project/extenstions/navigator_view.dart';
 import 'package:company_project/screen/login/cubit/auth_cubit.dart';
 import 'package:company_project/screen/login/otp_screen.dart';
+import 'package:company_project/screen/widgets/buttons/button_custom.dart';
 import 'package:company_project/utils/color_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -141,40 +143,4 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class ButtonCustom extends StatelessWidget {
-  const ButtonCustom({super.key, this.onPressed});
-  final Function()? onPressed;
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onPressed,
-      child: Container(
-        height: 45,
-        width: 200,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: ColorStyle.primary,
 
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Text(
-          "Git OTP Login",
-          style: TextStyle(
-            color: ColorStyle.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-extension NavigatorView on BuildContext {
-  pushScreen({required Widget screen, bool canPop = false}) {
-    return Navigator.pushAndRemoveUntil(
-      this,
-      MaterialPageRoute(builder: (context) => screen),
-      (route) => canPop,
-    );
-  }
-}

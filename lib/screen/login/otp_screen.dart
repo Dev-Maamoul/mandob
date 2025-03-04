@@ -1,7 +1,7 @@
+import 'package:company_project/extenstions/navigator_view.dart';
 import 'package:company_project/layer_data/init_class.dart';
 import 'package:company_project/screen/home/home_screen.dart';
 import 'package:company_project/screen/login/cubit/auth_cubit.dart';
-import 'package:company_project/screen/login/login_screen.dart';
 import 'package:company_project/screen/widgets/buttons/back_button_custom.dart';
 import 'package:company_project/utils/color_style.dart';
 import 'package:flutter/material.dart';
