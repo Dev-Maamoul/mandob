@@ -1,7 +1,8 @@
 import 'package:company_project/models/company.dart';
-import 'package:company_project/models/static';
+// import 'package:company_project/models/static';
 import 'package:company_project/models/static_car_type.dart';
 import 'package:company_project/models/static_cities.dart';
+import 'package:company_project/models/static_identity_type.dart';
 
 class DriverModel {
   DriverModel({
