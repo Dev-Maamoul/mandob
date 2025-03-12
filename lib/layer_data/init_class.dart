@@ -36,7 +36,7 @@ class InitClass {
     } catch (error) {
       throw FormatException(error.toString());
     }
-  }
+}
 
   clearData() async {
     loginData = null;

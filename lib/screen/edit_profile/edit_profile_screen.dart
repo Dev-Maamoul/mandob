@@ -1,15 +1,12 @@
 import 'dart:typed_data';
-
-import 'package:company_project/extenstions/navigator_view.dart';
-import 'package:company_project/screen/checkScreen/check_screen.dart';
 import 'package:company_project/screen/edit_profile/cubit/edit_profile_cubit.dart';
-import 'package:company_project/screen/home/home_screen.dart';
 import 'package:company_project/screen/widgets/dialogs/loading_dialog.dart';
 import 'package:company_project/screen/widgets/textfields/text_field_custom.dart';
 import 'package:company_project/utils/methods/upload_xlsx_file.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
@@ -53,10 +50,11 @@ class EditProfileScreen extends StatelessWidget {
                           hideDialogLoading();
                         }
                         if (state is SuccessChangeImageStateInit) {
-                          context.pushScreen(
-                            screen: HomeScreen(),
-                            canPop: false,
-                          );
+                          // context.pushScreen(
+                          //   screen: HomeScreen(),
+                          //   canPop: false,
+                          // );
+                          context.goNamed('/home');
                         }
                       },
                       child: Column(
@@ -124,10 +122,11 @@ class EditProfileScreen extends StatelessWidget {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  context.pushScreen(
-                                    screen: CheckScreen(),
-                                    canPop: false,
-                                  );
+                                  // context.pushScreen(
+                                  //   screen: CheckScreen(),
+                                  //   canPop: false,
+                                  // );
+                                  context.goNamed("/");
                                 },
                                 child: Text(
                                   "Cancel",
@@ -149,8 +148,3 @@ class EditProfileScreen extends StatelessWidget {
     );
   }
 }
-
-
-
-
-

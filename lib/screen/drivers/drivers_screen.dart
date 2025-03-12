@@ -1,5 +1,3 @@
-import 'package:company_project/extenstions/navigator_view.dart';
-import 'package:company_project/screen/driver_view/drivers_view_screen.dart';
 import 'package:company_project/screen/drivers/cubit/drivers_cubit.dart';
 import 'package:company_project/screen/widgets/buttons/action_button_custom.dart';
 import 'package:company_project/screen/widgets/cards/small_card_driver_info.dart';
@@ -9,6 +7,7 @@ import 'package:company_project/utils/color_style.dart';
 import 'package:company_project/utils/methods/upload_xlsx_file.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class DriversScreen extends StatelessWidget {
   const DriversScreen({super.key});
@@ -93,11 +92,15 @@ class DriversScreen extends StatelessWidget {
                                             (driver) => SmallCardDriverInfo(
                                               driver: driver,
                                               onPressed: () {
-                                                context.pushScreen(
-                                                  screen: DriversViewScreen(
-                                                    driver: driver,
-                                                  ),
-                                                  canPop: true,
+                                                // context.pushScreen(
+                                                //   screen: DriversViewScreen(
+                                                //     driver: driver,
+                                                //   ),
+                                                //   canPop: true,
+                                                // );
+                                                context.goNamed(
+                                                  '/driver',
+                                                  extra: driver,
                                                 );
                                               },
                                             ),

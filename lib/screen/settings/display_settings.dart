@@ -1,10 +1,8 @@
-import 'package:company_project/extenstions/navigator_view.dart';
 import 'package:company_project/layer_data/init_class.dart';
-import 'package:company_project/screen/checkScreen/check_screen.dart';
-import 'package:company_project/screen/edit_profile/edit_profile_screen.dart';
 import 'package:company_project/screen/settings/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 
 displaySettings({required BuildContext context}) {
   List<Widget> widget = [
@@ -12,7 +10,8 @@ displaySettings({required BuildContext context}) {
       title: "EditProfile",
       subTitle: "Edit or View Profile",
       onTap: () {
-        context.pushScreen(screen: EditProfileScreen());
+        // context.pushScreen(screen: EditProfileScreen());
+        context.goNamed('/edit_profile');
       },
     ),
 
@@ -27,7 +26,8 @@ displaySettings({required BuildContext context}) {
         await getIt.clearData();
         await getIt.loadData();
         if (context.mounted) {
-          context.pushScreen(screen: CheckScreen());
+          // context.pushScreen(screen: CheckScreen());
+          context.goNamed('/');
         }
       },
     ),
@@ -53,7 +53,8 @@ displaySettings({required BuildContext context}) {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(context); // Close dialog
+                // Navigator.pop(context); // Close dialog
+                context.pop(context); // Close dialog
               },
               child: Text('Close'),
             ),

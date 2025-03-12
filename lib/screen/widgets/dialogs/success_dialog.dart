@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 void showSuccessDialog({
   required BuildContext context,
@@ -43,7 +44,8 @@ void showSuccessDialog({
                 ),
               ),
               onPressed: () {
-                Navigator.of(context).pop(); // Close dialog
+                // Navigator.of(context).pop(); // Close dialog
+                context.pop(context);
               },
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),

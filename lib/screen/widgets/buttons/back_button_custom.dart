@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class BackButtonCustom extends StatelessWidget {
   const BackButtonCustom({super.key});
@@ -7,9 +8,10 @@ class BackButtonCustom extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        if (Navigator.canPop(context)) {
-          Navigator.pop(context);
-        }
+        // if (Navigator.canPop(context)) {
+        //   Navigator.pop(context);
+        // }
+        context.pop(context);
       },
       child: Text("<-Back"),
     );

@@ -1,10 +1,9 @@
-import 'package:company_project/extenstions/navigator_view.dart';
 import 'package:company_project/screen/login/cubit/auth_cubit.dart';
-import 'package:company_project/screen/login/otp_screen.dart';
 import 'package:company_project/screen/widgets/buttons/button_custom.dart';
 import 'package:company_project/utils/color_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 TextEditingController? textFieldController = TextEditingController(
@@ -25,7 +24,8 @@ class LoginScreen extends StatelessWidget {
             return BlocListener<AuthCubit, AuthState>(
               listener: (context, state) {
                 if (state is SuccessLoginState) {
-                  context.pushScreen(screen: OTPScreen(), canPop: true);
+                  // context.pushScreen(screen: OTPScreen(), canPop: true);
+                  context.goNamed('/otp');
                 }
                 if (state is ErrorState) {
                   ScaffoldMessenger.maybeOf(context)?.showSnackBar(
@@ -142,5 +142,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-
-

@@ -1,10 +1,8 @@
-import 'package:company_project/extenstions/navigator_view.dart';
 import 'package:company_project/layer_data/init_class.dart';
-import 'package:company_project/screen/home/home_screen.dart';
-import 'package:company_project/screen/login/login_screen.dart';
 import 'package:company_project/utils/color_style.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 
 class CheckScreen extends StatelessWidget {
   const CheckScreen({super.key});
@@ -15,9 +13,11 @@ class CheckScreen extends StatelessWidget {
       final getIt = GetIt.I.get<InitClass>();
       await getIt.loadData();
       if (getIt.authData?.token != null) {
-        context.pushScreen(screen: HomeScreen());
+        // context.pushScreen(screen: HomeScreen());
+        context.goNamed('/home');
       } else {
-        context.pushScreen(screen: LoginScreen());
+        // context.pushScreen(screen: LoginScreen());
+        context.goNamed('/login');
       }
     });
     return Scaffold(

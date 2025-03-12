@@ -1,6 +1,4 @@
-import 'package:company_project/extenstions/navigator_view.dart';
 import 'package:company_project/layer_data/init_class.dart';
-import 'package:company_project/screen/home/home_screen.dart';
 import 'package:company_project/screen/login/cubit/auth_cubit.dart';
 import 'package:company_project/screen/widgets/buttons/back_button_custom.dart';
 import 'package:company_project/utils/color_style.dart';
@@ -8,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pinput/pinput.dart';
 
 final TextEditingController otpCont = TextEditingController(text: "185637");
@@ -26,7 +25,8 @@ class OTPScreen extends StatelessWidget {
             return BlocListener<AuthCubit, AuthState>(
               listener: (context, state) {
                 if (state is SuccessVerifyState) {
-                  context.pushScreen(screen: HomeScreen());
+                  // context.pushScreen(screen: HomeScreen());
+                  context.go('/home');
                 }
                 if (state is ErrorState) {
                   ScaffoldMessenger.maybeOf(context)?.showSnackBar(
