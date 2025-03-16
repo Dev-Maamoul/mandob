@@ -27,24 +27,32 @@ class EditProfileCubit extends Cubit<EditProfileState> {
     try {
       emit(LoadedUpdateStateInit());
       final Map<String, dynamic> data = {};
+      bool updateData = false;
       final oldData = profile.profile;
       if (newData.fullName != oldData?.companyName) {
         data["full_name"] = newData.fullName;
+        updateData = true;
       }
       if (newData.commercial != oldData?.commercialId) {
         data["commercial"] = newData.commercial;
+        updateData = true;
       }
       if (newData.establishmentNumber != oldData?.establishmentId) {
         data["establishment_number"] = newData.establishmentNumber;
+        updateData = true;
       }
       final update = <Future>[];
-      if (isChangeImage == true) {
+      if (isChangeImage && updateData) {
+        update.add(profile.updateImage(dataUpdate: image!.toList()));
+        update.add(profile.updateProfile(dataUpdate: data));
+      } else if (isChangeImage) {
         update.add(profile.updateImage(dataUpdate: image!.toList()));
       } else {
         update.add(profile.updateProfile(dataUpdate: data));
       }
       await Future.wait(update);
-      emit(SuccessChangeImageStateInit());
+      // emit(SuccessChangeImageStateInit());
+      emit(SuccessUpdateStateInit());
     } catch (error) {
       emit(ErrorState());
     }

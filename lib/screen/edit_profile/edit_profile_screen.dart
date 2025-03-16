@@ -48,8 +48,18 @@ class EditProfileScreen extends StatelessWidget {
                           showDialogLoading(context: context);
                         } else {
                           hideDialogLoading();
+                          // context.goNamed('/home');
                         }
-                        if (state is SuccessChangeImageStateInit) {
+
+                        // if (state is SuccessChangeImageStateInit) {
+                        //   // context.pushScreen(
+                        //   //   screen: HomeScreen(),
+                        //   //   canPop: false,
+                        //   // );
+                        //   // context.goNamed('/home');
+                        // }
+
+                        if (state is SuccessUpdateStateInit) {
                           // context.pushScreen(
                           //   screen: HomeScreen(),
                           //   canPop: false,

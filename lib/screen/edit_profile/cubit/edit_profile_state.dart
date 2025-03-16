@@ -9,4 +9,5 @@ final class LoadedStateInit extends EditProfileState {}
 final class LoadedUpdateStateInit extends EditProfileState {}
 final class SuccessStateInit extends EditProfileState {}
 final class SuccessChangeImageStateInit extends EditProfileState {}
+final class SuccessUpdateStateInit extends EditProfileState {}
 final class ErrorState extends EditProfileState {}
