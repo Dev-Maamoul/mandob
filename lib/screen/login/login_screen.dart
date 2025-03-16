@@ -1,5 +1,5 @@
 import 'package:company_project/screen/login/cubit/auth_cubit.dart';
-import 'package:company_project/screen/widgets/buttons/button_custom.dart';
+import 'package:company_project/widgets/buttons/button_custom.dart';
 import 'package:company_project/utils/color_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

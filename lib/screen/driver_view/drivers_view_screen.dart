@@ -1,5 +1,5 @@
 import 'package:company_project/models/driver_model.dart';
-import 'package:company_project/screen/widgets/cards/card_driver_info.dart';
+import 'package:company_project/widgets/cards/card_driver_info.dart';
 import 'package:flutter/material.dart';
 
 class DriversViewScreen extends StatelessWidget {

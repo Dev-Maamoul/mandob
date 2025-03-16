@@ -1,8 +1,8 @@
 import 'package:company_project/screen/drivers/cubit/drivers_cubit.dart';
-import 'package:company_project/screen/widgets/buttons/action_button_custom.dart';
-import 'package:company_project/screen/widgets/cards/small_card_driver_info.dart';
-import 'package:company_project/screen/widgets/dialogs/loading_dialog.dart';
-import 'package:company_project/screen/widgets/dialogs/success_dialog.dart';
+import 'package:company_project/widgets/buttons/action_button_custom.dart';
+import 'package:company_project/widgets/cards/small_card_driver_info.dart';
+import 'package:company_project/widgets/dialogs/loading_dialog.dart';
+import 'package:company_project/widgets/dialogs/success_dialog.dart';
 import 'package:company_project/utils/color_style.dart';
 import 'package:company_project/utils/methods/upload_xlsx_file.dart';
 import 'package:flutter/material.dart';

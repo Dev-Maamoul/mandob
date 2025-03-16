@@ -1,8 +1,8 @@
 import 'package:company_project/models/driver_model.dart';
-import 'package:company_project/screen/widgets/cards/card_display.dart';
-import 'package:company_project/screen/widgets/images/images_account.dart.dart';
-import 'package:company_project/screen/widgets/text/label_column.dart';
-import 'package:company_project/screen/widgets/text/label_title_driver_widget.dart';
+import 'package:company_project/widgets/cards/card_display.dart';
+import 'package:company_project/widgets/images/images_account.dart.dart';
+import 'package:company_project/widgets/text/label_column.dart';
+import 'package:company_project/widgets/text/label_title_driver_widget.dart';
 import 'package:company_project/utils/color_style.dart';
 import 'package:flutter/material.dart';
 

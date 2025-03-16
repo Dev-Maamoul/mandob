@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 import 'package:company_project/screen/edit_profile/cubit/edit_profile_cubit.dart';
-import 'package:company_project/screen/widgets/dialogs/loading_dialog.dart';
-import 'package:company_project/screen/widgets/textfields/text_field_custom.dart';
+import 'package:company_project/widgets/dialogs/loading_dialog.dart';
+import 'package:company_project/widgets/textfields/text_field_custom.dart';
 import 'package:company_project/utils/methods/upload_xlsx_file.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
