@@ -1,3 +1,4 @@
+import 'package:company_project/layer_data/init_class.dart';
 import 'package:company_project/models/driver_model.dart';
 import 'package:company_project/screen/checkScreen/check_screen.dart';
 import 'package:company_project/screen/driver_view/drivers_view_screen.dart';
@@ -7,10 +8,26 @@ import 'package:company_project/screen/home/home_screen.dart';
 import 'package:company_project/screen/login/login_screen.dart';
 import 'package:company_project/screen/login/otp_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
+
+final _getIt = GetIt.I.get<InitClass>();
 
 final GoRouter router = GoRouter(
   initialLocation: '/',
+  redirect: (BuildContext context, GoRouterState state) async {
+    await _getIt.loadData();
+    final hasToken = _getIt.authData?.token != null;
+    final isTryingToAccessAuthScreens =
+        state.matchedLocation == '/login' || state.matchedLocation == '/otp';
+
+    if (!hasToken) {
+      return isTryingToAccessAuthScreens ? null : '/login';
+    } else {
+      return isTryingToAccessAuthScreens ? '/home' : null;
+    }
+  },
+
   routes: <RouteBase>[
     GoRoute(
       name: '/',
