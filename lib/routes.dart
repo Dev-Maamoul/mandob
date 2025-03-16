@@ -17,14 +17,25 @@ final GoRouter router = GoRouter(
   initialLocation: '/',
   redirect: (BuildContext context, GoRouterState state) async {
     await _getIt.loadData();
+
     final hasToken = _getIt.authData?.token != null;
-    final isTryingToAccessAuthScreens =
-        state.matchedLocation == '/login' || state.matchedLocation == '/otp';
+    final isTryingToAccessLogin = state.matchedLocation == '/login';
+    final isTryingToAccessOtp = state.matchedLocation == '/otp';
+    final bool hasStartedLogin = _getIt.loginData?.mobile != null;
 
     if (!hasToken) {
-      return isTryingToAccessAuthScreens ? null : '/login';
+      if (isTryingToAccessLogin) {
+        return null; // Allow access to login
+      }
+      if (isTryingToAccessOtp && hasStartedLogin) {
+        return null; // Allow OTP only if login was started
+      }
+      return '/login'; // Redirect everyone else to login
     } else {
-      return isTryingToAccessAuthScreens ? '/home' : null;
+      if (isTryingToAccessOtp || isTryingToAccessLogin) {
+        return '/home'; // Redirect logged-in users to home
+      }
+      return null; // Stay on the requested page
     }
   },
 

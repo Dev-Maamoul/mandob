@@ -6,9 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
-TextEditingController? textFieldController = TextEditingController(
-  text: "501231209",
-);
+TextEditingController textFieldController = TextEditingController(text: "501231209");
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -16,7 +14,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthCubit(),
+      create: (context) => AuthCubit()..mobile = "+966${textFieldController.text}", // Initialize with default
       child: Scaffold(
         body: Builder(
           builder: (context) {
@@ -74,17 +72,15 @@ class LoginScreen extends StatelessWidget {
                               child: InternationalPhoneNumberInput(
                                 isEnabled: true,
                                 initialValue: PhoneNumber(
-                                  isoCode: PhoneNumber.getISO2CodeByPrefix(
-                                    '966',
-                                  ),
+                                  isoCode: PhoneNumber.getISO2CodeByPrefix('966'),
+                                  phoneNumber: "+966501231209",
                                 ),
                                 textFieldController: textFieldController,
                                 selectorConfig: SelectorConfig(
                                   trailingSpace: false,
                                   setSelectorButtonAsPrefixIcon: true,
                                   leadingPadding: 20,
-                                  selectorType:
-                                      PhoneInputSelectorType.BOTTOM_SHEET,
+                                  selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                                 ),
                                 formatInput: true,
                                 keyboardType: TextInputType.number,
@@ -93,14 +89,10 @@ class LoginScreen extends StatelessWidget {
                                 inputDecoration: InputDecoration(
                                   hintText: '5XXXXXXXX',
                                   border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: ColorStyle.primary,
-                                    ),
+                                    borderSide: BorderSide(color: ColorStyle.primary),
                                   ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: ColorStyle.primary,
-                                    ),
+                                    borderSide: BorderSide(color: ColorStyle.primary),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
@@ -110,15 +102,11 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                   constraints: BoxConstraints(maxWidth: 250),
                                 ),
-
                                 inputBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: ColorStyle.primary,
-                                  ),
+                                  borderSide: BorderSide(color: ColorStyle.primary),
                                 ),
-
                                 onInputChanged: (PhoneNumber value) {
-                                  cubit.mobile = value.phoneNumber!;
+                                  cubit.mobile = value.phoneNumber ?? '';
                                 },
                               ),
                             ),

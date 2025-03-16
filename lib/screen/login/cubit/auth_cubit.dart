@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:async'; // Add this for runZonedGuarded
+
 import 'package:bloc/bloc.dart';
 import 'package:company_project/layer_data/init_class.dart';
 import 'package:company_project/repository/apis/methods/a_method_apis.dart';
@@ -13,22 +16,29 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitialState());
 
   Future<void> login() async {
-    try {
-      emit(LoadingLoginState());
+    await runZonedGuarded(() async {
+      try {
+        emit(LoadingLoginState());
 
-      mobile.replaceAll("+", "");
-      if (mobile.trim().isEmpty) {
-        throw FormatException("The phone not correct");
-      }
-      final loginData = await _getIt.apis.loginMethod(mobile: mobile);
-      await _getIt.saveLoginData(loginData: loginData);
+        mobile = mobile.trim();
+        mobile = mobile.replaceAll("+", "");
 
-      emit(SuccessLoginState());
-    } on FormatException catch (error) {
-      emit(ErrorState(text: error.message));
-    } catch (error) {
-      emit(ErrorState(text: error.toString()));
-    }
+        if (mobile.isEmpty || mobile.length <= 4) {
+          throw FormatException("Please enter a valid phone number");
+        }
+
+        final loginData = await _getIt.apis.loginMethod(mobile: mobile);
+        await _getIt.saveLoginData(loginData: loginData);
+
+        emit(SuccessLoginState());
+      } on FormatException catch (error) {
+        emit(ErrorState(text: error.message));
+      } catch (error) {
+        emit(ErrorState(text: "An unexpected error occurred: $error"));
+      } 
+    }, (error, stackTrace) {
+      emit(ErrorState(text: "Unexpected error: $error"));
+    });
   }
 
   Future<void> verifyOTP() async {
@@ -37,7 +47,7 @@ class AuthCubit extends Cubit<AuthState> {
       final mobile = _getIt.loginData!.mobile;
 
       if (otp.trim().isEmpty || otp.length < 6) {
-        throw FormatException("The OTP not correct");
+        throw FormatException("The OTP is not correct");
       }
       final authData = await _getIt.apis.otpVerifyMethod(
         mobile: mobile,

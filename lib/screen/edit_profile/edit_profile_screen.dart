@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'package:company_project/models/company_model.dart';
 import 'package:company_project/screen/edit_profile/cubit/edit_profile_cubit.dart';
 import 'package:company_project/widgets/dialogs/loading_dialog.dart';
 import 'package:company_project/widgets/textfields/text_field_custom.dart';

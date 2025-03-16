@@ -18,7 +18,7 @@ class ButtonCustom extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         child: Text(
-          "Git OTP Login",
+          "Get Login OTP",
           style: TextStyle(
             color: ColorStyle.white,
             fontWeight: FontWeight.bold,
